@@ -80,3 +80,19 @@ bool Date::operator==(const Date& rhs) const
 	if (lhs._day == rhs._day && lhs._month == rhs._month && lhs._year == rhs._year) return true;
 	return false;
  }
+ 
+void Date::incrementDay()
+ {
+	int month_integer = static_cast<int>(_month);
+	if (_day == daysInMonth() && month_integer == 12){
+		_day = 1;
+		month_integer = 1;
+		_year++;
+	}
+	else if (_day == daysInMonth()){
+		_day = 1;
+		month_integer++;
+	}
+	else _day++;
+	_month = static_cast<Month>(month_integer);
+}

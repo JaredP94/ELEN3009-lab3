@@ -80,6 +80,26 @@ TEST_CASE("Date Is Not Equivalent To A Date With Different Years") {
 // Provide tests for a new member function of the Date class
 // which will increase the date by one day.
 
+TEST_CASE("Date Is Equivalent To Single Day Increment") {
+    Date date_1(15, Month::June, 2000);
+	date_1.incrementDay();
+    Date date_2(16, Month::June, 2000);
+    CHECK(date_1 == date_2);
+}
+
+TEST_CASE("Date Is Equivalent To Day Increment Causing Month Increment") {
+    Date date_1(30, Month::June, 2000);
+	date_1.incrementDay();
+    Date date_2(1, Month::July, 2000);
+    CHECK(date_1 == date_2);
+}
+
+TEST_CASE("Date Is Equivalent To Day Increment Causing Year Increment") {
+    Date date_1(31, Month::December, 2000);
+	date_1.incrementDay();
+    Date date_2(1, Month::January, 2001);
+    CHECK(date_1 == date_2);
+}
 
 // Exercise 2.5
 // Write tests for the new default constructor and the
