@@ -13,6 +13,12 @@ Date::Date(int day, Month month, int year):
 		if (_year < 0) throw InvalidYear();
 	}
 
+Date::Date():
+	_day{_default.day()},
+	_month{_default.month()},
+	_year{_default.year()}
+	{}
+
 int Date::day() const
 {
 	return _day;
@@ -96,3 +102,10 @@ void Date::incrementDay()
 	else _day++;
 	_month = static_cast<Month>(month_integer);
 }
+
+void Date::setDefaultDate(int day, Month month, int year)
+{
+	_default = Date(day, month, year);
+}
+
+Date Date::_default{14, Month::June, 1994};

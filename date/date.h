@@ -30,6 +30,7 @@ enum class Month
 class Date
 {
 public:	
+	Date();
 	Date(int day, Month month, int year);
 	// return the day of the month
 	int	day () const;
@@ -41,6 +42,7 @@ public:
 	bool isLeapYear () const;	
 	bool operator==(const Date& rhs) const;
 	void incrementDay();
+	static void setDefaultDate(int day, Month month, int year);
 
 private:
 	// return the number of days in the _month
@@ -49,7 +51,7 @@ private:
 	int	_day;
 	Month _month;
 	int	_year;
-
+	static Date _default;
 };
 
 // standalone function for printing the date

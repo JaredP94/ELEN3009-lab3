@@ -104,3 +104,16 @@ TEST_CASE("Date Is Equivalent To Day Increment Causing Year Increment") {
 // Exercise 2.5
 // Write tests for the new default constructor and the
 // setDefaultDate method.
+
+TEST_CASE("Default Date Is Correctly Set") {
+	Date date_1;
+	Date date_2{14, Month::June, 1994};
+	CHECK(date_1 == date_2);
+}
+
+TEST_CASE("Can Set New Default Date") {
+	Date::setDefaultDate(4, Month::July, 1990);
+	Date date_1;
+	Date date_2{4, Month::July, 1990};
+	CHECK(date_1 == date_2);
+}
