@@ -74,3 +74,9 @@ void printDate(const Date& date)
 		<< endl;
 }
 
+bool Date::operator==(const Date& rhs) const
+{
+	Date lhs = Date(_day, _month, _year);
+	if (lhs._day == rhs._day && lhs._month == rhs._month && lhs._year == rhs._year) return true;
+	return false;
+ }
