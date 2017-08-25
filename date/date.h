@@ -7,6 +7,10 @@
 #include <iostream>
 using namespace std;
 
+class InvalidDay {};
+class InvalidMonth {};
+class InvalidYear {};
+
 enum class Month 
 {
 	January = 1, 

@@ -33,6 +33,18 @@ TEST_CASE("Valid Date is initialised correctly") {
 // to construct an invalid date. Think carefully about which
 // invalid dates to test.
 
+TEST_CASE("If Invalid Day Throws Exception") {
+	CHECK_THROWS_AS({Date false_day1(0, Month::September, 2000);}, InvalidDay);
+	CHECK_THROWS_AS({Date false_day2(45, Month::September, 2000);}, InvalidDay);
+}
+
+//TEST_CASE("If Invalid Month Throws Exception") {
+//	CHECK_THROWS_AS({Date false_month(24, Month::Thursday, 2000);}, InvalidMonth); //Note: This error can't be handled as the compiler will check if the value exists within the Month enum class before building.
+//}
+
+TEST_CASE("If Negative Year Throws Exception") {
+	CHECK_THROWS_AS({Date false_year(24, Month::September, -5000);}, InvalidYear);
+}
 
 // Exercise 2.3
 //TEST_CASE("Identical Dates are Equal") {
