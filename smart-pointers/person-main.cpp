@@ -21,20 +21,20 @@ Person printName()
 	Person thabo{"Thabo",12};
 	cout << thabo.name() << endl;
 	return thabo;
-}
+} //thabo goes out of scope
 
 shared_ptr<Person> printName2()
 {
 	auto maryanne_ptr = make_shared<Person>("Maryanne",12);
 	cout << maryanne_ptr->name() << endl;
 	return maryanne_ptr;
-}
+} //maryanne_ptr goes out of scope
 
 void printName3(shared_ptr<Person> person_ptr)
 {
 	cout << person_ptr->name() << endl;
 	return;
-}
+} //person_ptr goes out of scope
 
 
 int main()
@@ -51,6 +51,19 @@ int main()
     cout << sandile_ptr->age() << endl;
 
     return 0;
-}
+} //sandile_ptr goes out of scope
+  //thabo_in_main goes out of scope
+  //person_ptr_in_main goes out of scope
 
+  //thabo memory released
+  //maryanne memory released
+  //sandile_ptr memory release
+  
+  //maryanne = 2
+  //person_ptr = 0
+  //sandile_ptr = 0
+  //thabo_in_main = 0
+  //person_ptr_in_main = 1
+  
+  //sandile_ptr and thabo_in_main are stored on the stack which follows a LIFO memory release principle. Thus thabo_in_main gets deallocated first
 
