@@ -3,6 +3,22 @@
 
 #include "date.h"
 
+Date::Date(int day, Month month, int year):
+	_day{day},
+	_month{month},
+	_year{year}
+	{
+		if (_day < 1 || _day > daysInMonth()) throw InvalidDay();
+		if (daysInMonth() == false) throw InvalidMonth();
+		if (_year < 0) throw InvalidYear();
+	}
+
+Date::Date():
+	_day{_default.day()},
+	_month{_default.month()},
+	_year{_default.year()}
+	{}
+
 int Date::day() const
 {
 	return _day;
@@ -64,3 +80,32 @@ void printDate(const Date& date)
 		<< endl;
 }
 
+bool Date::operator==(const Date& rhs) const
+{
+	Date lhs = Date(_day, _month, _year);
+	if (lhs._day == rhs._day && lhs._month == rhs._month && lhs._year == rhs._year) return true;
+	return false;
+ }
+ 
+void Date::incrementDay()
+ {
+	int month_integer = static_cast<int>(_month);
+	if (_day == daysInMonth() && month_integer == 12){
+		_day = 1;
+		month_integer = 1;
+		_year++;
+	}
+	else if (_day == daysInMonth()){
+		_day = 1;
+		month_integer++;
+	}
+	else _day++;
+	_month = static_cast<Month>(month_integer);
+}
+
+void Date::setDefaultDate(int day, Month month, int year)
+{
+	_default = Date(day, month, year);
+}
+
+Date Date::_default{14, Month::June, 1994};
